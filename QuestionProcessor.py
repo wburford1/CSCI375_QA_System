@@ -4,78 +4,65 @@ import nltk
 from nltk.corpus import stopwords
 import string
 
+
 # a class for processing questions
 class QuestionProcessor:
+    # constructs a QuestionProcessor object for 'question'
+    # q is a question
+    def __init__(self, q):
 
-    #a list of key words from the question
-    key_words = []
+        self.question = q
+        self.key_words = []
 
-    #the original question
-    question = ''
-    
-    #constructs a QuestionProcessor object for 'question'
-    #q is a question
-    def __init__ (self, q):
-
-        global question
-        global key_words
-        
-        question = q
-        key_words = []
-        
         self.process()
 
-    #tokenizes question, removes stopwords and makes anything in quotations its own token, also removes punctuation. 
+    # tokenizes question, removes stopwords and makes anything in quotations its own token, also removes punctuation.
     def process(self):
-
-        global key_words
-        toks = nltk.word_tokenize(question)
+        toks = nltk.word_tokenize(self.question)
 
         i = 0
         while i < len(toks):
 
             quotes = ['``', "''", '"']
 
-            #if there is a quoted entity in the question, it is added in its entirety to the list of key words
+            # if there is a quoted entity in the question, it is added in its entirety to the list of key words
             if toks[i] in quotes:
-                i+=2
+                i += 2
                 tok = toks[i-1]
                 while not toks[i] in quotes:
                     tok = ' '.join([tok, toks[i]])
-                    i+= 1
-                i+=1
-                key_words.append(tok)
-            #if a token is not a stopword, it is added to the list of key words
+                    i += 1
+                i +=1
+                self.key_words.append(tok)
+            # if a token is not a stopword, it is added to the list of key words
             else:
                 if toks[i] not in set(stopwords.words('english')):
-                    key_words.append(toks[i])
-                i+=1
+                    self.key_words.append(toks[i])
+                i += 1
 
-        #removes punctuation 
-        key_words = [word for word in key_words if not word in list(string.punctuation)]
-                        
-        print question
-        print key_words
+        # removes punctuation
+        self.key_words = [word for word in self.key_words if word not in list(string.punctuation)]
 
-    def get_keywords():
-        return key_words
+        print(self.question)
+        print(self.key_words)
 
-    def get_question():
-        return question
+    def get_keywords(self):
+        return self.key_words
 
-    def set_question(q):
+    def get_question(self):
+        return self.question
 
-        clear()
-        question = q
-        process()
+    def set_question(self, q):
+        self.clear()
+        self.question = q
+        self.process()
 
-    def clear():
-        
-        question = ''
-        key_words = []
-        
-'''
-testing
+    def clear(self):
+        self.question = ''
+        self.key_words = []
+
+
+# testing
 if __name__ == '__main__':
     process_question = QuestionProcessor('What is the length, of "tail of two cities"')
-'''
+    process_question.set_question('What team did Wayne Gretzky play for?')
