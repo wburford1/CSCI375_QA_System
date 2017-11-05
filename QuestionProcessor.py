@@ -13,6 +13,7 @@ class QuestionProcessor:
 
         self.question = None
         self.key_words = []
+        self.stop_words = []
 
     # tokenizes question, removes stopwords and makes anything in quotations its own token, also removes punctuation.
     def process(self):
@@ -36,6 +37,8 @@ class QuestionProcessor:
             else:
                 if toks[i] not in set(stopwords.words('english')):
                     self.key_words.append(toks[i])
+                else:
+                    self.stop_words.append(toks[i])
                 i += 1
 
         # removes punctuation
@@ -49,6 +52,9 @@ class QuestionProcessor:
 
     def get_question(self):
         return self.question
+
+    def get_stopwords(self):
+        return self.stop_words
 
     def set_question(self, q):
         self.clear()

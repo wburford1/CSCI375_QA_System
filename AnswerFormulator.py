@@ -2,13 +2,14 @@
 
 from nltk import ne_chunk, pos_tag, word_tokenize
 from nltk.chunk import tree2conlltags
+from nltk.corpus import stopwords
 from QuestionProcessor import QuestionProcessor
 from PassageRetriever import PassageRetriever
 
 
 # A class for formatting answers given a question
 class AnswerFormulator:
-    question_types = 'WHO', 'WHAT', 'WHERE', 'WHEN', 'WHICH', 'WHY', 'HOW'
+    question_types = 'WHO', 'WHAT', 'WHERE', 'WHEN', 'WHICH', 'WHY', 'HOW', 'NAME', 'CAN'
 
     def __init__(self):
         # the question in plain text
@@ -19,6 +20,7 @@ class AnswerFormulator:
         self.ne_tagged_q = None
         # a list of ScoredPassage objects as defined in PassageRetriever
         self.passage_objs = None
+        self.tokenized_passages = None
 
     # question is a string, passages is a list of passage objects defined in PassageRetriever
     def set_question(self, question, passages):
@@ -34,17 +36,20 @@ class AnswerFormulator:
         self.tokenized_q = None
         self.ne_tagged_q = None
         self.passage_objs = None
+        self.tokenized_passages = None
 
     # Returns the question type, ussually specified by its 'W' word, ie 'who is that' would return 'who'
     def get_questiontype(self):
         # think about question 20: "Tell me what...". Prob just a what question
         # think about question 91, 93: "Name a ...".
-        first_word = self.tokenized_q[0].upper()
-        if first_word in AnswerFormulator.question_types:
-            return first_word
-        if first_word == "WHAT'S":
-            return 'WHAT'
-        return 'W'
+
+        for word in self.tokenized_q:
+            if word.upper() in AnswerFormulator.question_types:
+                q_word = word.upper()
+                break
+        print (q_word)
+
+        return q_word
 
     # Returns the kind of answer that the question implies.
     # ie 'where' questions would return location, who questions would return person
@@ -53,30 +58,60 @@ class AnswerFormulator:
         qt = self.get_questiontype()
 
         if qt == 'WHO':
-            return 'PERSON/ORG'
+            return ['PERSON', 'ORGANIZATION']
         elif qt == 'WHERE':
-            return 'PLACE'
+            return ['LOCATION', 'GPE', 'FACILITY']
         elif qt == 'WHEN':
-            return 'DATE/TIME'
+            return ['TIME', 'DATE']
+        elif qt == 'NAME':
+            return ['ORGANIZATION', 'PERSON', 'LOCATION', 'DATE', 'TIME', 'MONEY', 'PERCENT', 'FACILITY', 'GPE']
         elif qt == 'WHAT':
-            return 'NOUNPHRASE'
+            return ['NOUNPHRASE']
         elif qt == 'WHICH':
-            return 'ELEMENTOF'
+            return ['ELEMENTOF']
         elif qt == 'WHY':
-            return 'JUSTIFICATION'
+            return ['JUSTIFICATION']
         elif qt == 'HOW':
-            return 'DESCRIPTION'
+            return ['DESCRIPTION']
 
     # returns an array of ten answers where [0] is the 'best' answer and [9] is the tenth best
     # question and passages must not be equal to None
     def get_answers(self, count=10):
 
+        possible_answers = {}
         at = self.get_answertype()
-        print(self.ne_tagged_q)
+        stopword_set = set(stopwords.words('english'))
 
-        if at == 'WHO' or at == 'WHERE' or at == 'WHEN':
-            print('')
+        #a list of tokenized, relevant passages with all the stopwords removed
+        not_stopwords_passages = [[e for e in element.passage if e not in stopword_set] for element in self.passage_objs]
+        ne_passages = [[e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 0] for element in self.passage_objs]
+        
+        if self.get_questiontype() in ['WHO', 'WHERE', 'WHEN', 'NAME']:
+            #goes through every named entity in the passages and if a given named entity's type is in at then it adds that answer to possible answers or increments that answer's score by 1 if it already exists in possible aswers
+            for passage in ne_passages:
+                for e in passage:
+                    if e[2][e[2].index('-') + 1:] in at:
+                        if e[2][e[2].index('-') + 1:] not in possible_answers:
+                            possible_answers[e[1]] = 1
+                        else:
+                            possible_answers[e[1]] += 1
+                        
+            
+        return ordered_answers([], possible_answers, count)
 
+    #recursive method for ordering answers 1-count given a number of possible answers
+    #'possibilities' is a dictionary of answer:confidence where confidence is a quantified measure of increasing confidence in the answer
+    #returns a list of answers in order from best to worst of length count OR the max possible length given the number of possible answers
+    def ordered_answers(answers, possibles, count=10):
+        if len(answer) == count or len(possibles) == 0:
+            return answers
+        else:
+            greatest = possibles.keys()[0]
+            for pos in possibles:
+                if possibles[pos] > possibles[greatest]:
+                    greatest = pos
+            possibles.remove(greatest)
+            return ordered_answers(answers.append(greatest), possibiles, count)
 
 # testing
 if __name__ == '__main__':
@@ -85,9 +120,13 @@ if __name__ == '__main__':
         print('false')
 
     if True:
-        qp = QuestionProcessor('What hockey team did Wayne Gretzky play for?')
+        num = 100
+        qp = QuestionProcessor()
+        qp.set_question('What hockey team did Wayne Gretzky play for in Los Angeles?')
         pr = PassageRetriever()
         pr.set_question(0, qp.get_keywords(), 'train', 20)
+        all_passages = pr.retrieve_top_scored_passages()
         af = AnswerFormulator()
-        af.set_question(qp, pr)
+        af.set_question(qp.get_question(), all_passages)
         af.get_answers()
+        print (af.ne_tagged_q)
