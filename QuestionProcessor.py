@@ -9,12 +9,10 @@ import string
 class QuestionProcessor:
     # constructs a QuestionProcessor object for 'question'
     # q is a question
-    def __init__(self, q):
+    def __init__(self):
 
-        self.question = q
+        self.question = None
         self.key_words = []
-
-        self.process()
 
     # tokenizes question, removes stopwords and makes anything in quotations its own token, also removes punctuation.
     def process(self):
@@ -32,7 +30,7 @@ class QuestionProcessor:
                 while not toks[i] in quotes:
                     tok = ' '.join([tok, toks[i]])
                     i += 1
-                i +=1
+                i += 1
                 self.key_words.append(tok)
             # if a token is not a stopword, it is added to the list of key words
             else:
@@ -58,7 +56,7 @@ class QuestionProcessor:
         self.process()
 
     def clear(self):
-        self.question = ''
+        self.question = None
         self.key_words = []
 
 
