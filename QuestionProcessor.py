@@ -41,8 +41,8 @@ class QuestionProcessor:
         # removes punctuation
         self.key_words = [word for word in self.key_words if word not in list(string.punctuation)]
 
-        print(self.question)
-        print(self.key_words)
+        # print(self.question)
+        # print(self.key_words)
 
     def get_keywords(self):
         return self.key_words
@@ -58,6 +58,10 @@ class QuestionProcessor:
     def clear(self):
         self.question = None
         self.key_words = []
+
+    def find_keywords(self, q):
+        self.set_question(q)
+        return self.key_words
 
 
 # testing

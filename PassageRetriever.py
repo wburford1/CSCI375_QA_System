@@ -28,19 +28,33 @@ class PassageRetriever:
         self.gram_length = None
 
     def retrieve_text_passages_scored(self):
-        with open('topdocs/{}/top_docs.{}'.format(self.environment, self.question_number), 'r') as top_docs_file:
+        # latin-1 ??????
+        with open('topdocs/{}/top_docs.{}'.format(self.environment, self.question_number), 'r', encoding='latin-1') as top_docs_file:
             top_docs = top_docs_file.read()
             docs = top_docs.split('Qid: ')
             text_passages_scored = []
             docs.remove("")
             for doc in docs:
-                text = doc.split('<TEXT>')[1]
-                text = doc.split('</TEXT>')[0]
-                rank = (int)(doc[doc.index('Rank: ')+len('Rank: '): doc.index('Score: ')])
-                score = (float)(doc[doc.index('Score: ')+len('Score: '): doc.index('\n')])
-                scored_passages = self.score_passages_from_text(text)
-                scored_passages = sorted(scored_passages, key=lambda passage: passage.score)
-                text_passages_scored.append(TextPassagesScored(rank, score, scored_passages))
+                # if self.question_number == 17:
+                #     print('--------------------------------')
+                #     print(doc)
+                text = None
+                if '<TEXT>' in doc:
+                    text = doc.split('<TEXT>')[1]
+                    text = doc.split('</TEXT>')[0]
+                elif '<LEADPARA>' in doc:
+                    text = doc.split('<LEADPARA>')[1]
+                    text = doc.split('</LEADPARA>')[0]
+                # else:
+                    # print(doc)
+                    # print("Cannot find body text of document.")
+                    # raise Exception("Cannot find body text of document.")
+                if text is not None:
+                    rank = (int)(doc[doc.index('Rank: ')+len('Rank: '): doc.index('Score: ')])
+                    score = (float)(doc[doc.index('Score: ')+len('Score: '): doc.index('\n')])
+                    scored_passages = self.score_passages_from_text(text)
+                    scored_passages = sorted(scored_passages, key=lambda passage: passage.score)
+                    text_passages_scored.append(TextPassagesScored(rank, score, scored_passages))
             return text_passages_scored
 
     # count is the number of passages to be retrieved. If None, all passages will be retrieved
