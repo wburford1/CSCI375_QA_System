@@ -29,7 +29,8 @@ class PassageRetriever:
 
     def retrieve_text_passages_scored(self):
         # latin-1 ??????
-        with open('topdocs/{}/top_docs.{}'.format(self.environment, self.question_number), 'r', encoding='latin-1') as top_docs_file:
+        with open('topdocs/{}/top_docs.{}'.format(self.environment, self.question_number),
+                  'r', encoding='latin-1') as top_docs_file:
             top_docs = top_docs_file.read()
             docs = top_docs.split('Qid: ')
             text_passages_scored = []
@@ -130,7 +131,6 @@ if __name__ == '__main__':
                 print("Found 'Kings' in {} index package with score {}.".format(counter, passage.score))
                 break
             counter += 1
-
 
 
 # potential improvements

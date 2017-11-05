@@ -40,7 +40,7 @@ def main():
                 # pred_file.write('qid {}'.format(quest_obj.num))
                 # for ans in answers:
                 #     pred_file.write(str(ans))
-                #
+
 
 if __name__ == '__main__':
     main()
