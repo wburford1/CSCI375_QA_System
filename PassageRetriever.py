@@ -68,7 +68,7 @@ class PassageRetriever:
                 composite_score = scored_passage.score * (text_tup.score/100)
                 all_passages.append(ScoredPassage(scored_passage.passage, composite_score))
         all_passages = sorted(all_passages, key=lambda passage: -1*passage.score)
-        return all_passages[0: count] if count is not None else all_passages
+        return all_passages[0: min(count, len(all_passages))] if count is not None else all_passages
 
     def score_passages_from_text(self, text):
         passages = self.get_passages_from_text(text)

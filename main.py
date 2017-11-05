@@ -23,20 +23,21 @@ def main():
                 questions.append(Question(quest, q_num))
                 index += 1
             index += 1
-        print(questions)
+        # print(questions)
 
         with open('predictions.txt', 'w') as pred_file:
             for quest_obj in questions:
                 keywords = qp.find_keywords(quest_obj.q)
                 pr.clear_question()
                 pr.set_question(quest_obj.num, keywords, 'train')
-                passage_objs = pr.retrieve_top_scored_passages(100)
+                passage_objs = pr.retrieve_top_scored_passages(1000)
                 print('Question {}'.format(quest_obj.num))
                 print("\t{} --> {}".format(quest_obj.q, keywords))
                 print("\tBest passage: {}. Score = {}".format(passage_objs[0].passage, passage_objs[0].score))
 
                 # uncomment once we get answers
-                # answers = af.get_answers(count=10)
+                af.set_question(quest_obj.q, passage_objs)
+                answers = af.get_answers()
                 # pred_file.write('qid {}'.format(quest_obj.num))
                 # for ans in answers:
                 #     pred_file.write(str(ans))
