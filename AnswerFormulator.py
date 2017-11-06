@@ -6,7 +6,8 @@ from nltk.chunk import tree2conlltags
 from nltk.corpus import stopwords
 from QuestionProcessor import QuestionProcessor
 from PassageRetriever import PassageRetriever
-
+import re
+import collections
 
 # A class for formatting answers given a question
 class AnswerFormulator:
@@ -97,9 +98,22 @@ class AnswerFormulator:
                         else:
                             possible_answers[e[0]] += 1
 
-        #elif self.get_answertype() == 'DEF':
+        elif self.get_answertype() == 'DEF':
+            possible_answers = self.satisfies_patterns('DEF')
             
         return self.ordered_answers([], possible_answers, count)
+
+    #A method for finding finding patterns in the passages
+    #returns a dictionary of Strings found in the passages linked to the confidence in each String, where each String satisfies a pattern corresponding to 'pattern_type'
+    def satisfies_patterns(self, pattern_type):
+
+        #passages_as_string = 
+        
+        if pattern_type == 'DEF':
+            def_patterns = ['<SUBJECT> is a .+\.', '[,.].+ such as <SUBJECT>', '<SUBJECT> are .+.', '<SUBJECT>, .+,']
+            for pattern in self.pattern_objs
+                
+        
 
     #recursive method for ordering answers 1-count given a number of possible answers
     #'possibilities' is a dictionary of answer:confidence where confidence is a quantified measure of increasing confidence in the answer
@@ -129,6 +143,7 @@ if __name__ == '__main__':
         pr = PassageRetriever()
         pr.set_question(18, qp.get_keywords(), 'train', 20)
         all_passages = pr.retrieve_top_scored_passages(1000)
+        print (all_passages)
         af = AnswerFormulator()
         af.set_question(qp.get_question(), all_passages)
         print (af.get_answers())
