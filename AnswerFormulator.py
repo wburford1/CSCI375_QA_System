@@ -1,5 +1,6 @@
 # Nevin Bernet
 
+import nltk
 from nltk import ne_chunk, pos_tag, word_tokenize
 from nltk.chunk import tree2conlltags
 from nltk.corpus import stopwords
@@ -47,7 +48,6 @@ class AnswerFormulator:
             if word.upper() in AnswerFormulator.question_types:
                 q_word = word.upper()
                 break
-        print (q_word)
 
         return q_word
 
@@ -84,34 +84,37 @@ class AnswerFormulator:
 
         #a list of tokenized, relevant passages with all the stopwords removed
         not_stopwords_passages = [[e for e in element.passage if e not in stopword_set] for element in self.passage_objs]
-        ne_passages = [[e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 0] for element in self.passage_objs]
+        ne_passages = [[e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 'O'] for element in self.passage_objs]
+        ne_passages = [e for e in ne_passages if not len(e) == 0]
         
         if self.get_questiontype() in ['WHO', 'WHERE', 'WHEN', 'NAME']:
             #goes through every named entity in the passages and if a given named entity's type is in at then it adds that answer to possible answers or increments that answer's score by 1 if it already exists in possible aswers
             for passage in ne_passages:
                 for e in passage:
-                    if e[2][e[2].index('-') + 1:] in at:
-                        if e[2][e[2].index('-') + 1:] not in possible_answers:
-                            possible_answers[e[1]] = 1
+                    if e[2][e[2].index('-') + 1:] in at and e[0] not in word_tokenize(self.question):
+                        if e[0] not in possible_answers:
+                            possible_answers[e[0]] = 1
                         else:
-                            possible_answers[e[1]] += 1
-                        
+                            possible_answers[e[0]] += 1
+
+        #elif self.get_answertype() == 'DEF':
             
-        return ordered_answers([], possible_answers, count)
+        return self.ordered_answers([], possible_answers, count)
 
     #recursive method for ordering answers 1-count given a number of possible answers
     #'possibilities' is a dictionary of answer:confidence where confidence is a quantified measure of increasing confidence in the answer
     #returns a list of answers in order from best to worst of length count OR the max possible length given the number of possible answers
-    def ordered_answers(answers, possibles, count=10):
-        if len(answer) == count or len(possibles) == 0:
+    def ordered_answers(self, answers, possibles, count=10):
+        if len(answers) == count or len(possibles) == 0:
             return answers
         else:
-            greatest = possibles.keys()[0]
+            greatest = list(possibles)[0]
             for pos in possibles:
                 if possibles[pos] > possibles[greatest]:
                     greatest = pos
-            possibles.remove(greatest)
-            return ordered_answers(answers.append(greatest), possibiles, count)
+            del possibles[greatest]
+            answers.append(greatest)
+            return self.ordered_answers(answers, possibles, count)
 
 # testing
 if __name__ == '__main__':
@@ -122,11 +125,10 @@ if __name__ == '__main__':
     if True:
         num = 100
         qp = QuestionProcessor()
-        qp.set_question('What hockey team did Wayne Gretzky play for in Los Angeles?')
+        qp.set_question('Where did Woodstock take place?')
         pr = PassageRetriever()
-        pr.set_question(0, qp.get_keywords(), 'train', 20)
-        all_passages = pr.retrieve_top_scored_passages()
+        pr.set_question(18, qp.get_keywords(), 'train', 20)
+        all_passages = pr.retrieve_top_scored_passages(1000)
         af = AnswerFormulator()
         af.set_question(qp.get_question(), all_passages)
-        af.get_answers()
-        print (af.ne_tagged_q)
+        print (af.get_answers())
