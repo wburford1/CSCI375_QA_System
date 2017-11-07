@@ -30,7 +30,7 @@ def main():
                 keywords = qp.find_keywords(quest_obj.q)
                 pr.clear_question()
                 pr.set_question(quest_obj.num, keywords, 'train')
-                passage_objs = pr.retrieve_top_scored_passages(1000)
+                passage_objs = pr.retrieve_top_scored_passages()
                 print('Question {}'.format(quest_obj.num))
                 print("\t{} --> {}".format(quest_obj.q, keywords))
                 print("\tBest passage: {}. Score = {}".format(passage_objs[0].passage, passage_objs[0].score))

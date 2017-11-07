@@ -104,6 +104,10 @@ class PassageRetriever:
             recomb = recomb.replace(' !', "!")
         return [(passages[i], recombined[i]) for i in range(0, len(passages), 1)]
 
+        # sentences = nltk.sent_tokenize(text)
+        # tok_sentences = [nltk.word_tokenize(sent) for sent in sentences]
+        # return [(tok_sentences[i], sentences[i]) for i in range(0, len(sentences), 1)]
+
     @staticmethod
     def cosine_similarity(vector1, vector2):
         assert len(vector1) == len(vector2)
