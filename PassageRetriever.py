@@ -1,7 +1,7 @@
 from collections import namedtuple
 import nltk
 
-ScoredPassage = namedtuple('ScoredPassage', 'passage, score')
+ScoredPassage = namedtuple('ScoredPassage', 'passage, score, passage_str')
 TextPassagesScored = namedtuple('TextPassagesScored', 'rank, score, scored_passages')
 
 
@@ -66,7 +66,7 @@ class PassageRetriever:
             scored_passages = text_tup.scored_passages
             for scored_passage in scored_passages:
                 composite_score = scored_passage.score * (text_tup.score/100)
-                all_passages.append(ScoredPassage(scored_passage.passage, composite_score))
+                all_passages.append(ScoredPassage(scored_passage.passage, composite_score, scored_passage.passage_str))
         all_passages = sorted(all_passages, key=lambda passage: -1*passage.score)
         return all_passages[0: min(count, len(all_passages))] if count is not None else all_passages
 
@@ -75,7 +75,8 @@ class PassageRetriever:
         feature_vector = {key: 0 for key in self.keywords}
         found_keyword = False
         scored_passages = []
-        for passage in passages:
+        for passage_and_recomb in passages:
+            passage = passage_and_recomb[0]
             for key in feature_vector:
                 if key in passage:
                     feature_vector[key] = 1  # using binary feature vector
@@ -83,7 +84,7 @@ class PassageRetriever:
             similarity = (self.cosine_similarity(list(feature_vector.values()),
                                                  [1 for _ in range(0, len(feature_vector), 1)])
                           if found_keyword else 0)
-            scored_passages.append(ScoredPassage(passage, similarity))
+            scored_passages.append(ScoredPassage(passage, similarity, passage_and_recomb[1]))
             # clear feature_vector
             if found_keyword:
                 for key in feature_vector:
@@ -96,7 +97,12 @@ class PassageRetriever:
         # ~A
         assert len(tokens) >= self.gram_length
         passages = [tokens[index: index+self.gram_length] for index in range(0, len(tokens)-10, 1)]
-        return passages
+        recombined = [" ".join(passage) for passage in passages]
+        for recomb in recombined:
+            recomb = recomb.replace(" .", ".")
+            recomb = recomb.replace(' ?', "?")
+            recomb = recomb.replace(' !', "!")
+        return [(passages[i], recombined[i]) for i in range(0, len(passages), 1)]
 
     @staticmethod
     def cosine_similarity(vector1, vector2):
