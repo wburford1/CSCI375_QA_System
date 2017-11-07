@@ -3,6 +3,7 @@ import nltk
 
 ScoredPassage = namedtuple('ScoredPassage', 'passage, score, passage_str')
 TextPassagesScored = namedtuple('TextPassagesScored', 'rank, score, scored_passages')
+stemmer = nltk.stem.snowball.SnowballStemmer('english')
 
 
 class PassageRetriever:
@@ -72,14 +73,14 @@ class PassageRetriever:
 
     def score_passages_from_text(self, text):
         passages = self.get_passages_from_text(text)
-        feature_vector = {key: 0 for key in self.keywords}
+        feature_vector = {stemmer.stem(key): 0 for key in self.keywords}
         found_keyword = False
         scored_passages = []
         for passage_and_recomb in passages:
             passage = passage_and_recomb[0]
             for key in feature_vector:
                 if key in passage:
-                    feature_vector[key] = 1  # using binary feature vector
+                    feature_vector[stemmer.stem(key)] = 1  # using binary feature vector
                     found_keyword = True
             similarity = (self.cosine_similarity(list(feature_vector.values()),
                                                  [1 for _ in range(0, len(feature_vector), 1)])
