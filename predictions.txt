@@ -1,0 +1,1045 @@
+qid 0
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 1
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 2
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 3
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 5
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 7
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 8
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 9
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 10
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 11
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 12
+Hoeveler
+Rubino
+Turner
+William
+Ted
+Department
+Fernandez
+Noriega
+Kennedy
+State
+qid 13
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 14
+West
+Yersinia
+U.S.
+Venezuela
+Greensboro
+Legionella
+Point
+Southern
+California
+Smithsonian
+qid 15
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 17
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 18
+Bethel
+California
+Aquarian
+Yasgur
+Southern
+Comfort
+Altamont
+Woolstock
+East
+Oakland
+qid 19
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 20
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 21
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 22
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 24
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 26
+Wilmington
+Oregon
+Mexico
+Peoria
+Japan
+District
+Longobardi
+Crisco
+Europe
+Citrus
+qid 28
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 29
+1983
+1981
+1986
+today
+1939
+1962
+1960
+1963
+1936
+1976
+qid 30
+Gibson
+William
+Krueger
+Mr.
+University
+Geof
+Novell
+Wheelwright
+Net
+Musa
+qid 31
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 34
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 35
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 36
+Johnson
+Caro
+Coleridge
+Boswell
+Beckett
+John
+Doe
+LBJ
+Adams
+Savage
+qid 37
+Bell
+Pacific
+Betty
+Rucker
+Yip
+English
+Silva
+John
+P
+Bob
+qid 39
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 40
+Hilton
+Jerome
+TEXT
+Williams
+Michael
+City
+Giants
+Mabon
+Charles
+College
+qid 41
+Sam
+Walton
+Glass
+David
+Mr.
+Ben
+Franklin
+TEXT
+Hypermart
+M.
+qid 43
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 45
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 46
+Iraq
+Babylon
+Iraqi
+Arab
+Saddam
+Tillule
+Assyrian
+Nebuchadnezzar
+Babylonian
+Hussein
+qid 47
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 48
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 49
+Satan
+Europe
+New
+Dakota
+Mexico
+Parris
+California
+South
+York
+Tallahassee
+qid 50
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 51
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 52
+Stoll
+Clifford
+Berkeley
+Mr.
+Markoff
+FBI
+Bock
+TEXT
+JPL
+Laboratory
+qid 53
+NBC
+ABC
+Pauley
+CBS
+Jane
+Sullivan
+Lunden
+Hartman
+Gumbel
+News
+qid 54
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 55
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 56
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 57
+Australia
+South
+Argyle
+Africa
+Northern
+North
+America
+Venetia
+Western
+Finsch
+qid 58
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 62
+Henson
+Jim
+David
+Kermit
+Joe
+Davis
+Frog
+Raposo
+Horne
+Sesame
+qid 63
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 65
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 66
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 68
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 69
+Fain
+Academy
+Pan
+Hilliard
+Disney
+Sammy
+Feinstein
+Berlin
+Tin
+Alley
+qid 70
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 72
+Mr.
+McKee
+Frankenstein
+Hollywood
+Schopenhauer
+Kramer
+Aesop
+Fables
+Jones
+Karloff
+qid 73
+CBS
+Van
+Dyke
+Dick
+LeMasters
+NBC
+No
+Cannell
+Hargrove
+Moore
+qid 74
+Queens
+Brooklyn
+Post
+Rank
+Score
+Netherlands
+PHRASE
+Dutch
+Economy
+Surinamese
+qid 75
+Virginia
+Union
+Manassas
+Mrazek
+Gettysburg
+House
+Robert
+North
+Washington
+Lee
+qid 76
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 77
+1976
+1975
+1987
+1970
+1989
+1959
+1958
+1991
+1988
+1985
+qid 78
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 79
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 80
+Ireland
+Republic
+Irish
+Father
+Cronin
+Kurt
+Fahrt
+Judith
+Northern
+Fiaich
+qid 81
+Brooks
+Burnett
+Mr.
+Richard
+Jack
+Judith
+John
+Stanley
+Peter
+Lane
+qid 82
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 83
+1932
+1990
+1983
+six years earlier
+Four years ago
+1770
+1986
+1139
+0184
+this month
+qid 84
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 86
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 87
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 88
+Colombia
+Miami
+Indias
+Sierra
+Venezuelan
+Perija
+Rank
+Score
+Column
+TAKES
+qid 89
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 90
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 91
+Harley
+Honda
+America
+Bear
+Japanese
+U.S.
+United
+Marysville
+Don
+States
+qid 92
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 93
+Bonnie
+Boitano
+Brian
+Blair
+Yamaguchi
+Kristi
+Ito
+Debi
+Midori
+Thomas
+qid 94
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 95
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 99
+this year
+1978
+1987
+this month
+1988
+1993
+six months later
+tonight
+two years ago
+1965
+qid 100
+Fossey
+Dian
+University
+Geza
+Teleki
+Maxwell
+Louis
+Central
+Washington
+Boysen
+qid 101
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 102
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 103
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 104
+last month
+1987
+1988
+today
+1986
+last September
+this year
+1985
+last April
+0626
+qid 105
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 106
+Zulu
+John
+Smith
+II
+William
+Elizabeth
+George
+Mary
+Queen
+Sir
+qid 108
+Garrett
+Sheriff
+Pat
+Bill
+Brushy
+Miller
+Roberts
+William
+Fort
+Bonney
+qid 109
+Wonder
+Garrett
+Academy
+Fain
+Chiate
+Mr.
+Lee
+Morris
+Disney
+Henley
+qid 111
+Springboks
+Tony
+Andre
+Few
+Rugby
+Joubert
+Underwood
+Welsh
+All
+Wales
+qid 112
+1980
+1973
+1945
+1975
+today
+1960
+last month
+1938
+1986
+2100
+qid 113
+Galati
+Baum
+Hugo
+Vicki
+Victor
+Broadway
+Wrath
+Pulitzer
+Frank
+Dust
+qid 114
+Seuss
+Geisel
+Bailey
+Santa
+Lady
+Godivas
+La
+Charles
+Dickens
+George
+qid 115
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9
+qid 116
+1992
+1995
+1972
+1988
+today
+this month
+9009
+next June
+three months after
+1991
+qid 117
+no answer 0
+no answer 1
+no answer 2
+no answer 3
+no answer 4
+no answer 5
+no answer 6
+no answer 7
+no answer 8
+no answer 9

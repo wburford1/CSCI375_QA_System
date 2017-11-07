@@ -35,12 +35,13 @@ def main():
                 print("\t{} --> {}".format(quest_obj.q, keywords))
                 print("\tBest passage: {}. Score = {}".format(passage_objs[0].passage, passage_objs[0].score))
 
-                # uncomment once we get answers
                 af.set_question(quest_obj.q, passage_objs)
                 answers = af.get_answers()
-                # pred_file.write('qid {}'.format(quest_obj.num))
-                # for ans in answers:
-                #     pred_file.write(str(ans))
+                pred_file.write('qid {}\n'.format(quest_obj.num))
+                for ans in answers:
+                    pred_file.write(str(ans)+'\n')
+                for i in range(len(answers), 10, 1):
+                    pred_file.write(str("no answer {}\n".format(i)))
 
 
 if __name__ == '__main__':

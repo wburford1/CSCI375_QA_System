@@ -91,6 +91,9 @@ class AnswerFormulator:
 
         # START WHEN LOOKING FOR NAMED ENTITY ANSWER
         # if we are looking for a specific named entity, make sure we have that named entity in one of the passages
+        if at is None:
+            print('No answer type for question: {}'.format(self.question))
+            return []
         at_is_ne = False
         for a_type in at:
             if a_type in ['ORGANIZATION', 'PERSON', 'LOCATION', 'MONEY', 'PERCENT', 'FACILITY', 'GPE']:
