@@ -1,7 +1,7 @@
 # Nevin Bernet
 
 import nltk
-from nltk import ne_chunk, pos_tag, word_tokenize
+from nltk import ne_chunk, pos_tag, word_tokenize, Text
 from nltk.chunk import tree2conlltags
 from nltk.corpus import stopwords
 from QuestionProcessor import QuestionProcessor
@@ -83,41 +83,42 @@ class AnswerFormulator:
         at = self.get_answertype()
         stopword_set = set(stopwords.words('english'))
 
-        #a list of tokenized, relevant passages with all the stopwords removed
+        # a list of tokenized, relevant passages with all the stopwords removed
         not_stopwords_passages = [[e for e in element.passage if e not in stopword_set] for element in self.passage_objs]
         ne_passages = [[e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 'O'] for element in self.passage_objs]
         ne_passages = [e for e in ne_passages if not len(e) == 0]
-        
+
         if self.get_questiontype() in ['WHO', 'WHERE', 'WHEN', 'NAME']:
-            #goes through every named entity in the passages and if a given named entity's type is in at then it adds that answer to possible answers or increments that answer's score by 1 if it already exists in possible aswers
+            # goes through every named entity in the passages and if a given named entity's type is in at then it adds that answer to possible answers or increments that answer's score by 1 if it already exists in possible aswers
             for passage in ne_passages:
                 for e in passage:
-                    if e[2][e[2].index('-') + 1:] in at and e[0] not in word_tokenize(self.question):
+                    # why is it if the word is not in the question?
+                    if e[2][e[2].index('-') + 1:] in at and e[0] not in self.tokenized_q:
                         if e[0] not in possible_answers:
                             possible_answers[e[0]] = 1
                         else:
                             possible_answers[e[0]] += 1
 
-        elif self.get_answertype() == 'DEF':
-            possible_answers = self.satisfies_patterns('DEF')
-            
+        # elif self.get_answertype() == 'DEF':
+        #     possible_answers = self.satisfies_patterns('DEF')
+
         return self.ordered_answers([], possible_answers, count)
 
-    #A method for finding finding patterns in the passages
-    #returns a dictionary of Strings found in the passages linked to the confidence in each String, where each String satisfies a pattern corresponding to 'pattern_type'
-    def satisfies_patterns(self, pattern_type):
+    # A method for finding finding patterns in the passages
+    # returns a dictionary of Strings found in the passages linked to the confidence in each String, where each String satisfies a pattern corresponding to 'pattern_type'
+    # def satisfies_patterns(self, pattern_type):
+    #
+    #     # passages_as_string =
+    #
+    #     if pattern_type == 'DEF':
+    #         def_patterns = ['<SUBJECT> is a .+\.', '[,.].+ such as <SUBJECT>', '<SUBJECT> are .+.', '<SUBJECT>, .+,']
+    #         for pattern in self.pattern_objs
 
-        #passages_as_string = 
-        
-        if pattern_type == 'DEF':
-            def_patterns = ['<SUBJECT> is a .+\.', '[,.].+ such as <SUBJECT>', '<SUBJECT> are .+.', '<SUBJECT>, .+,']
-            for pattern in self.pattern_objs
-                
-        
 
-    #recursive method for ordering answers 1-count given a number of possible answers
-    #'possibilities' is a dictionary of answer:confidence where confidence is a quantified measure of increasing confidence in the answer
-    #returns a list of answers in order from best to worst of length count OR the max possible length given the number of possible answers
+
+    # recursive method for ordering answers 1-count given a number of possible answers
+    # 'possibilities' is a dictionary of answer:confidence where confidence is a quantified measure of increasing confidence in the answer
+    # returns a list of answers in order from best to worst of length count OR the max possible length given the number of possible answers
     def ordered_answers(self, answers, possibles, count=10):
         if len(answers) == count or len(possibles) == 0:
             return answers
@@ -130,20 +131,27 @@ class AnswerFormulator:
             answers.append(greatest)
             return self.ordered_answers(answers, possibles, count)
 
+
 # testing
 if __name__ == '__main__':
-
     if False:
         print('false')
 
     if True:
         num = 100
         qp = QuestionProcessor()
-        qp.set_question('Where did Woodstock take place?')
-        pr = PassageRetriever()
-        pr.set_question(18, qp.get_keywords(), 'train', 20)
-        all_passages = pr.retrieve_top_scored_passages(1000)
-        print (all_passages)
-        af = AnswerFormulator()
-        af.set_question(qp.get_question(), all_passages)
-        print (af.get_answers())
+        test_qs = [('Where did Woodstock take place?', 18),
+                   ('Who is the founder of the Wal-Mart stores?', 41),
+                   ('Who created "The Muppets"?', 62),
+                   ('Name a civil war battlefield.', 75),
+                   ('When did the California lottery begin?', 104)]
+        for test_q in test_qs:
+            print(test_q)
+            qp.set_question(test_q[0])
+            pr = PassageRetriever()
+            pr.set_question(test_q[1], qp.get_keywords(), 'train', 20)
+            all_passages = pr.retrieve_top_scored_passages(1000)
+            # print(all_passages)
+            af = AnswerFormulator()
+            af.set_question(qp.get_question(), all_passages)
+            print(af.get_answers())
