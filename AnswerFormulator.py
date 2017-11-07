@@ -89,6 +89,7 @@ class AnswerFormulator:
         print('{} passages'.format(len(self.passage_objs)))
         start_time = time.time()
 
+        # START WHEN LOOKING FOR NAMED ENTITY ANSWER
         # if we are looking for a specific named entity, make sure we have that named entity in one of the passages
         at_is_ne = False
         for a_type in at:
@@ -98,13 +99,14 @@ class AnswerFormulator:
         # only do ne tagging if we are looking for a named entity as the answer
         if at_is_ne:
             end_ne_tagging_index = 2000
-            not_stopwords_passages = [[e for e in element.passage if e not in stopword_set] for element in self.passage_objs]
-            tagged_passages = [[e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 'O'] for element in self.passage_objs[:end_ne_tagging_index]]
-            ne_passages = [e for e in tagged_passages if not len(e) == 0]
+            # not_stopwords_passages = [[e for e in element.passage if e not in stopword_set] for element in self.passage_objs]
+            # tagged passages is has an IOB tagged passage at [0] and the passage obj at [1]
+            tagged_passages = [([e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 'O'], element) for element in self.passage_objs[:end_ne_tagging_index]]
+            ne_passages = [e for e in tagged_passages if not len(e[0]) == 0]
             found_correct_ne = False
             while not found_correct_ne and end_ne_tagging_index <= len(self.passage_objs):
                 for ne_pass in ne_passages:
-                    for ne in ne_pass:
+                    for ne in ne_pass[0]:
                         if ne[2][ne[2].index('-')+1:] in at:
                             found_correct_ne = True
                             break
@@ -113,26 +115,23 @@ class AnswerFormulator:
                 if not found_correct_ne:
                     print('had to increment')
                     increment_amount = 1000
-                    tagged_passages = [[e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 'O'] for element in self.passage_objs[end_ne_tagging_index:min(end_ne_tagging_index + increment_amount, len(self.passage_objs))]]
+                    tagged_passages = [([e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 'O'], element) for element in self.passage_objs[end_ne_tagging_index:min(end_ne_tagging_index + increment_amount, len(self.passage_objs))]]
                     end_ne_tagging_index += increment_amount
-                    ne_passages += [e for e in tagged_passages if not len(e) == 0]
+                    ne_passages += [e for e in tagged_passages if not len(e[0]) == 0]
 
             print("NE tagging took {}s".format(time.time()-start_time))
 
             # these will only occur when an answer type is in a named entity
             if self.get_questiontype() in ['WHO', 'WHERE', 'NAME']:
                 # goes through every named entity in the passages and if a given named entity's type is in at then it adds that answer to possible answers or increments that answer's score by 1 if it already exists in possible aswers
-                # if 'California' in self.question:
-                #     for ne in ne_passages:
-                #         print(ne)
                 for passage in ne_passages:
-                    for e in passage:
+                    for e in passage[0]:
                         # why is it if the word is not in the question?
                         if e[2][e[2].index('-') + 1:] in at and e[0] not in self.tokenized_q:
                             if e[0] not in possible_answers:
-                                possible_answers[e[0]] = 1
+                                possible_answers[e[0]] = passage[1].score
                             else:
-                                possible_answers[e[0]] += 1
+                                possible_answers[e[0]] += passage[1].score
         # if we are looking for a time/date, use timex
         # it only recognizes years and relative time statements though (need a Python 2 module to do better things)
         # this seems to be ok for now though b/c I only see WHEN Qs with year answers
@@ -146,6 +145,7 @@ class AnswerFormulator:
                         possible_answers[time_entity] = t_pass[1].score
                     else:
                         possible_answers[time_entity] += t_pass[1].score
+        # END LOOKING FOR NAMED ENTITY ANSWER
 
         # elif self.get_answertype() == 'DEF':
         #     possible_answers = self.satisfies_patterns('DEF')
