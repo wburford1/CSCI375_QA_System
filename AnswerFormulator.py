@@ -105,7 +105,7 @@ class AnswerFormulator:
             while not found_correct_ne and end_ne_tagging_index <= len(self.passage_objs):
                 for ne_pass in ne_passages:
                     for ne in ne_pass:
-                        if ne[2][ne[2].index('-'):] in at:
+                        if ne[2][ne[2].index('-')+1:] in at:
                             found_correct_ne = True
                             break
                     if found_correct_ne:
@@ -115,7 +115,7 @@ class AnswerFormulator:
                     increment_amount = 1000
                     tagged_passages = [[e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if not e[2] == 'O'] for element in self.passage_objs[end_ne_tagging_index:min(end_ne_tagging_index + increment_amount, len(self.passage_objs))]]
                     end_ne_tagging_index += increment_amount
-                    ne_passages = [e for e in tagged_passages if not len(e) == 0]
+                    ne_passages += [e for e in tagged_passages if not len(e) == 0]
 
             print("NE tagging took {}s".format(time.time()-start_time))
 
@@ -134,7 +134,7 @@ class AnswerFormulator:
                             else:
                                 possible_answers[e[0]] += 1
         # if we are looking for a time/date, use timex
-        # it only recognizes years and relative time statements though
+        # it only recognizes years and relative time statements though (need a Python 2 module to do better things)
         # this seems to be ok for now though b/c I only see WHEN Qs with year answers
         if 'TIME' in at or 'DATE' in at:
             last_time_tagged_index = 5000
@@ -188,13 +188,13 @@ if __name__ == '__main__':
     if True:
         num = 100
         qp = QuestionProcessor()
-        # test_qs = [('Where did Woodstock take place?', 18),
-        #            ('Who is the founder of the Wal-Mart stores?', 41),
-        #            ('Who created "The Muppets"?', 62),
-        #            ('Name a civil war battlefield.', 75),
-        #            ('When did the California lottery begin?', 104)]
-        test_qs = [('When was the NFL established?', 99),
+        test_qs = [('Where did Woodstock take place?', 18),
+                   ('Who is the founder of the Wal-Mart stores?', 41),
+                   ('Who created "The Muppets"?', 62),
+                   ('Name a civil war battlefield.', 75),
                    ('When did the California lottery begin?', 104)]
+        # test_qs = [('When was the NFL established?', 99),
+        #            ('When did the California lottery begin?', 104)]
         for test_q in test_qs:
             print(test_q)
             qp.set_question(test_q[0])
