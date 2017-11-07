@@ -1,3 +1,6 @@
+# Forked on 11/6/17 from https://github.com/nltk/nltk_contrib/blob/master/nltk_contrib/timex.py
+# edited by Will Burford to make Python3 compatible
+
 # Code for tagging temporal expressions in text
 # For details of the TIMEX format, see http://timex2.mitre.org/
 
