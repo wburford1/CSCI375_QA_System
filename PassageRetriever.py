@@ -1,5 +1,6 @@
 from collections import namedtuple
 import nltk
+import config
 
 ScoredPassage = namedtuple('ScoredPassage', 'passage, score, passage_str')
 TextPassagesScored = namedtuple('TextPassagesScored', 'rank, score, scored_passages')
@@ -10,27 +11,23 @@ class PassageRetriever:
     def __init__(self):
         self.question_number = None
         self.keywords = None
-        self.environment = None
         self.gram_length = None
 
     # question_number is the Qid
     # keywords is an array of terms to be queried. This will be used as a feature vector
-    # environment will be either 'train' or 'test'
-    def set_question(self, question_number, keywords, environment='train', gram_length=10):
+    def set_question(self, question_number, keywords, gram_length=10):
         self.question_number = question_number
         self.keywords = keywords
-        self.environment = environment
         self.gram_length = gram_length
 
     def clear_question(self):
         self.question_number = None
         self.keywords = None
-        self.environment = None
         self.gram_length = None
 
     def retrieve_text_passages_scored(self):
         # latin-1 ??????
-        with open('topdocs/{}/top_docs.{}'.format(self.environment, self.question_number),
+        with open('{}/top_docs.{}'.format(config.DOCUMENTS_DIRECTORY_PATH, self.question_number),
                   'r', encoding='latin-1') as top_docs_file:
             top_docs = top_docs_file.read()
             docs = top_docs.split('Qid: ')

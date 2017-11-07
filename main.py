@@ -2,6 +2,7 @@ import QuestionProcessor
 import PassageRetriever
 import AnswerFormulator
 from collections import namedtuple
+import config
 
 Question = namedtuple('Question', 'q, num')
 
@@ -12,7 +13,7 @@ def main():
     af = AnswerFormulator.AnswerFormulator()
     questions = []
 
-    with open('qadata/train/questions.txt', 'r') as questions_file:
+    with open(config.QUESTION_FILE_PATH, 'r') as questions_file:
         q_lines = questions_file.readlines()
         index = 0
         while index < len(q_lines):
@@ -29,7 +30,7 @@ def main():
             for quest_obj in questions:
                 keywords = qp.find_keywords(quest_obj.q)
                 pr.clear_question()
-                pr.set_question(quest_obj.num, keywords, 'train')
+                pr.set_question(quest_obj.num, keywords, 15)
                 passage_objs = pr.retrieve_top_scored_passages()
                 print('Question {}'.format(quest_obj.num))
                 print("\t{} --> {}".format(quest_obj.q, keywords))

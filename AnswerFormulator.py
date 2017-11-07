@@ -202,7 +202,7 @@ if __name__ == '__main__':
             print(test_q)
             qp.set_question(test_q[0])
             pr = PassageRetriever()
-            pr.set_question(test_q[1], qp.get_keywords(), 'train', 20)
+            pr.set_question(test_q[1], qp.get_keywords(), 10)
             all_passages = pr.retrieve_top_scored_passages()
             # print(all_passages)
             af = AnswerFormulator()
