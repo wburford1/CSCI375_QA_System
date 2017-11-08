@@ -203,6 +203,45 @@ class AnswerFormulator:
                             possible_answers[answer] = 1
 
                 mod_tok_q = mod_tok_q[:len(mod_tok_q)-1]
+        #Handles questions like: 'how many __' or 'how much ___' or 'how few _____'
+        elif 'AMOUNT' in at:
+            tagged_passages = [([e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if e[2] == 'O' or e[2] == 'MONEY'], element) for element in self.passage_objs[:end_ne_tagging_index]]
+            ne_passages = [e for e in tagged_passages if not len(e[0]) == 0]
+            for passage in ne_passages:
+                for e in passage[0]:
+                    if e[1] == 'NUM':
+                        if e[0] not in possible_answers:
+                            possible_answers[e[0]] = passage[1].score
+                        else:
+                            possible_answer[e[0]] += passage[1].score
+
+        # for most 'WHAT' questions (all those other than def questions) we search through all the relevant passages and create a dictionary of nounphrases with confidence scores as values
+        elif 'CHARACTERISTIC' in at:
+            grammar = r"""
+              NP: {<DT|PP\$>?<JJ>*<NN>}   # chunk determiner/possessive, adjectives and noun
+                  {<NNP>+}                # chunk sequences of proper nouns
+            """
+
+            for passage in self.passage_objs:
+                noun_phrase = ''
+                pos_passage = pos_tag(passage.passage)
+                cp = nltk.RegexpParser(grammar)
+                result = cp.parse(pos_passage)
+                for e in tree2conlltags(result):
+                    if e[2] == 'B-NP':
+                        if not len(noun_phrase) == 0:
+                            if noun_phrase not in possible_answers:
+                                possible_answers[noun_phrase] = passage.score
+                            else:
+                                possible_answers[noun_phrase] += passage.score
+                        noun_phrase = e[0]
+                    elif e[2] == 'I-NP':
+                        noun_phrase += (' ' + e[0])
+                if not len(noun_phrase) == 0:
+                    if noun_phrase not in possible_answers:
+                        possible_answers[noun_phrase] = passage.score
+                    else:
+                        possible_answers[noun_phrase] += passage.score
 
         else:
             possible_answers = self.satisfies_patterns(at)
@@ -273,7 +312,18 @@ if __name__ == '__main__':
         #            ('What are the Poconos?', 55)]
         test_qs = [('What are the Poconos?', 55),
                    ("What's the most famous tourist attraction in Rome?", 66),
-                   ("What province is Edmonton located in?", 102)]
+                   ("What province is Edmonton located in?", 102),
+                   ('What hockey team did Wayne Gretzky play for?', 0),
+                   ('Where did Woodstock take place?', 18),
+                   ('Who is the founder of the Wal-Mart stores?', 41),
+                   ('Who created "The Muppets"?', 62),
+                   ('Name a civil war battlefield.', 75),
+                   ('When did the California lottery begin?', 104),
+                   ('What is thalassemia?', 15),
+                   ('What is a stratocaster', 39),
+                   ('What are the Poconos?', 55)]
+        # test_qs = [('When was the NFL established?', 99),
+        #            ('When did the California lottery begin?', 104)]
         for test_q in test_qs:
             print(test_q)
             qp.set_question(test_q[0])
