@@ -21,71 +21,71 @@ no answer 7
 no answer 8
 no answer 9
 qid 2
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+place
+cease-fire
+states
+order
+position
+cuisine
+basis
+matter
+siege
+investigations
 qid 3
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+price
+years
+trees
+house
+>
+school
+today
+children
+market
+times
 qid 5
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+>
+game
+defense
+points
+victory
+football
+<
+season
+home
+conference
 qid 7
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+city
+potatoes
+herb
+bread
+sausage
+council
+proposal
+night
+selections
+percent
 qid 8
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+radiation
+people
+health
+consequences
+specialists
+radioactivity
+Shevelev
+handling
+government
+stoves
 qid 9
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Volterra
+Florence
+David
+Daniele
+Palais
+Grand
+Adam
+Cratsley
+Raphael
+Gericault
 qid 10
 no answer 0
 no answer 1
@@ -98,16 +98,16 @@ no answer 7
 no answer 8
 no answer 9
 qid 11
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+time
+hair
+forest
+rain
+sex
+today
+jet-setters
+>
+villages
+town
 qid 12
 Hoeveler
 Rubino
@@ -120,16 +120,16 @@ State
 Fernandez
 CBS
 qid 13
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Houses
+Winkler
+Parliament
+English
+American
+Greenwich
+Sargent
+Herstmonceux
+Earth
+HPI
 qid 14
 West
 U.S.
@@ -142,16 +142,16 @@ Point
 Southern
 California
 qid 15
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+decision
+anemia
+idea
+blood
+abortion
+fibrosis
+risk
+test
+cell
+example
 qid 17
 no answer 0
 no answer 1
@@ -175,60 +175,60 @@ N.Y.
 Comfort
 Altamont
 qid 19
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+nation
+business
+art
+market
+point
+characteristic
+exhibition
+today
+paint
+concern
 qid 20
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+horse
+end
+people
+>
+career
+year
+fire
+tell
+difference
+darkness
 qid 21
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+music
+idea
+critics
+line
+history
+rock
+wife
+melody
+pop
+<
 qid 22
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+census
+city
+survey
+numbers
+statisticians
+post-enumeration
+count
+units
+growth
+housing
 qid 24
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+once
+country
+expectations
+president
+lot
+future
+approach
+relations
+regard
+waterway
 qid 26
 Wilmington
 Oregon
@@ -241,16 +241,16 @@ District
 Longobardi
 Crisco
 qid 28
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+cell
+people
+form
+melanoma
+cancers
+exposure
+risk
+cases
+type
+study
 qid 29
 1983
 1986
@@ -285,16 +285,16 @@ no answer 7
 no answer 8
 no answer 9
 qid 34
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Iraqi
+Dow
+Orange
+Agent
+Vietnam
+Huambo
+U.S.
+White
+Lahoun
+House
 qid 35
 no answer 0
 no answer 1
@@ -329,16 +329,16 @@ Rucker
 Center
 Santa
 qid 39
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+people
+guitar
+music
+kids
+rock
+craft
+garbage
+time
+vision
+days
 qid 40
 Giants
 Hilton
@@ -362,16 +362,16 @@ Franklin
 TEXT
 De
 qid 43
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+NBC
+Jones
+Quincy
+Littlefield
+Tartikoff
+Jackson
+Bardeux
+Jesse
+Morris
+Murphy
 qid 45
 no answer 0
 no answer 1
@@ -395,27 +395,27 @@ Nebuchadnezzar
 Babylonian
 Assyrian
 qid 47
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Boston
+Danforth
+New
+Mr.
+Pirates
+York
+Yankees
+League
+National
+Thrift
 qid 48
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+company
+products
+sales
+research
+year
+blood
+drugs
+market
+exchange
+pressure
 qid 49
 Europe
 New
@@ -428,16 +428,16 @@ Dakota
 South
 Northern
 qid 50
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+university
+year
+game
+student
+male
+mountaineer
+iconography
+proof
+mess
+basketball
 qid 51
 no answer 0
 no answer 1
@@ -472,27 +472,27 @@ Gumbel
 Hartman
 News
 qid 54
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Greek
+Korean
+English
+Kinast
+Cyrillic
+Hebrew
+Latin
+Seth
+Moldavian
+Spanish
 qid 55
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+dues
+future
+part
+kind
+distance
+door
+children
+lake
+woman
+car
 qid 56
 no answer 0
 no answer 1
@@ -560,16 +560,16 @@ no answer 7
 no answer 8
 no answer 9
 qid 66
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+world
+visitors
+year
+tourists
+tourism
+country
+region
+attractions
+summer
+monuments
 qid 68
 no answer 0
 no answer 1
@@ -648,16 +648,16 @@ Robert
 Washington
 Lee
 qid 76
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+south
+part
+battle
+study
+miles
+edge
+kind
+troopers
+problem
+hill
 qid 77
 1970
 1976
@@ -681,16 +681,16 @@ no answer 7
 no answer 8
 no answer 9
 qid 79
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+cents
+bar
+mail
+codes
+post
+letter
+>
+address
+nation
+office
 qid 80
 Irish
 Ireland
@@ -714,16 +714,16 @@ Stanley
 Lane
 Aaron
 qid 82
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Carolina
+South
+Hugo
+Island
+Charleston
+Sullivan
+Pawley
+North
+Liming
+Hilton
 qid 83
 1932
 1990
@@ -736,38 +736,38 @@ Four years ago
 1139
 0184
 qid 84
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Lecter
+FBI
+Foster
+Demme
+Ruben
+Martin
+Wolves
+Middleton
+LBJ
+Harris
 qid 86
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+NutraSweet
+Monsanto
+Johnson
+FDA
+U.S.
+Co.
+Mr.
+Aspartame
+Holland
+Olestra
 qid 87
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+police
+campaign
+time
+part
+concerns
+service
+home
+missiles
+dispatcher
+customers
 qid 88
 Colombia
 Miami
@@ -780,27 +780,27 @@ Perija
 Rank
 Score
 qid 89
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Ciccone
+Michael
+Pepsi
+Robinson
+MTV
+American
+George
+Martika
+Irish
+Blackwell
 qid 90
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+show
+company
+Today
+>
+problem
+year
+clark
+productions
+TV
+television
 qid 91
 Harley
 Honda
@@ -813,16 +813,16 @@ Marysville
 States
 Don
 qid 92
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+ABC
+CBS
+Farace
+NBC
+Keaton
+Richard
+Sellecca
+Fox
+New
+Bob
 qid 93
 Boitano
 Yamaguchi
@@ -835,27 +835,27 @@ Midori
 American
 Debi
 qid 94
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Zovirax
+Reye
+Chicken
+US
+Plotkin
+Wellcome
+U.S.
+FDA
+Merck
+Sandra
 qid 95
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Disney
+Walt
+Katzenberg
+Eisner
+Hollywood
+Spielberg
+Forrest
+Frank
+Michael
+Pictures
 qid 99
 this year
 1978
@@ -879,27 +879,27 @@ Washington
 Maxwell
 Louis
 qid 101
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+things
+one
+model
+foretaste
+president
+months
+years
+campaign
+soil
+mediocrity
 qid 102
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+>
+life
+team
+tomorrow
+guys
+tone
+<
+reminders
+advantage
+swiftness
 qid 103
 no answer 0
 no answer 1
@@ -923,16 +923,16 @@ last year
 1985
 last April
 qid 105
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+people
+sauce
+seasons
+pulp
+menu
+husband
+chore
+roasting
+imports
+table
 qid 106
 Zulu
 Smith
@@ -1011,16 +1011,16 @@ La
 Jolla
 House
 qid 115
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+Barbie
+Mattel
+Hasbro
+Toys
+Japanese
+Inc.
+Tyco
+Miss
+America
+My
 qid 116
 1992
 1995
@@ -1033,13 +1033,13 @@ this month
 next June
 three months after
 qid 117
-no answer 0
-no answer 1
-no answer 2
-no answer 3
-no answer 4
-no answer 5
-no answer 6
-no answer 7
-no answer 8
-no answer 9
+planning
+officials
+>
+law
+safety
+airports
+<
+problems
+air
+agency

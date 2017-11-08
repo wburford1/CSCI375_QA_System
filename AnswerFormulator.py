@@ -11,6 +11,7 @@ import re
 import collections
 import time
 import timex
+import similarity
 import string
 
 # A class for formatting answers given a question
@@ -49,8 +50,9 @@ class AnswerFormulator:
     # Returns the question type, ussually specified by its 'W' word, ie 'who is that' would return 'who'
     def get_questiontype(self):
         # think about question 20: "Tell me what...". Prob just a what question
-        # think about question 91, 93: "Name a ...".
 
+        if 'name' in self.question.lower():
+            return 'NAME'
         for word in self.tokenized_q:
             if word.upper() in AnswerFormulator.question_types:
                 q_word = word.upper()
@@ -73,16 +75,16 @@ class AnswerFormulator:
         elif qt == 'NAME':
             return ['ORGANIZATION', 'PERSON', 'LOCATION', 'DATE', 'TIME', 'MONEY', 'PERCENT', 'FACILITY', 'GPE']
         elif qt == 'WHAT':
-            if len(qp.get_keywords()) < 3:
+            if (self.tokenized_q[1] == "'s" or 'is' in self.tokenized_q or 'are' in self.tokenized_q or 'was' in self.tokenized_q or 'were' in self.tokenized_q):
                 return ['DEF']
             else:
-                return[CHARACTERISTIC]
+                return['CHARACTERISTIC']
         elif qt == 'WHICH':
             return ['ELEMENTOF']
         elif qt == 'HOW':
-            if self.qp.get_keywords()[qp.get_keywords().index(qt.lower()) + 1] in ['much', 'many', 'few']:
+            if self.qp.get_keywords()[self.qp.get_keywords().index(qt.lower()) + 1] in ['much', 'many', 'few']:
                 return ['AMOUNT']
-            
+
 
     # returns an array of ten answers where [0] is the 'best' answer and [9] is the tenth best
     # question and passages must not be equal to None
@@ -157,17 +159,62 @@ class AnswerFormulator:
                         possible_answers[time_entity] += t_pass[1].score
         # END LOOKING FOR NAMED ENTITY ANSWER
 
+        elif 'DEF' in at:
+            end_passages = 2000
+            to_be = ['is', 'are', 'were', 'was']
+            mod_tok_q = None
+            if "'s" == self.tokenized_q[1]:
+                mod_tok_q = self.tokenized_q[2:]
+            for be in to_be:
+                if be in self.tokenized_q:
+                    mod_tok_q = list(self.tokenized_q)
+                    mod_tok_q.pop(mod_tok_q.index(be))
+            if '?' in mod_tok_q:
+                mod_tok_q.pop(mod_tok_q.index('?'))
+            if 'what' == mod_tok_q[0].lower():
+                mod_tok_q.pop(0)
+            for be in to_be:
+                # for i in range(0, len(mod_tok_q), 1):
+                #     more_modified_toks = list(mod_tok_q)
+                #     more_modified_toks.insert(i, be)
+                mod_tok_q.append(be)
+                for passage_obj in self.passage_objs[:end_passages]:
+                    pas = passage_obj.passage
+                    pas_pos = pos_tag(pas)
+                    for pos in pas_pos:
+                        if (pos[1] == 'NN' or pos[1] == 'NNS') and pos[0] not in mod_tok_q:
+                            if pos[0] not in possible_answers:
+                                possible_answers[pos[0]] = passage_obj.score
+                            else:
+                                possible_answers[pos[0]] += passage_obj.score
+                    joined_pas = " ".join(pas)
+                    if " ".join(mod_tok_q) in joined_pas:
+                        last_word = mod_tok_q[len(mod_tok_q)-1]
+                        phrase = []
+                        for i in range(pas.index(last_word), len(pas), 1):
+                            pos = pas_pos[i]
+                            if (pos[1] == 'NN' or pos[1] == 'NNS') and pos[0] not in mod_tok_q:
+                                phrase.append(pos[0])
+                            if not (pos[1] == 'NN' or pos[1] == 'NNS'):
+                                break
+                        if len(phrase) > 0:
+                            answer = " ".join(phrase)
+                            print('found answer = {}'.format(answer))
+                            possible_answers[answer] = 1
+
+                mod_tok_q = mod_tok_q[:len(mod_tok_q)-1]
+
         else:
             possible_answers = self.satisfies_patterns(at)
-            
+
         return self.ordered_answers([], possible_answers, count)
 
-     #A method for finding finding patterns in the passages
-     #returns a dictionary of Strings found in the passages linked to the confidence in each String, where each String satisfies a pattern corresponding to 'pattern_type'
+    # A method for finding finding patterns in the passages
+    # returns a dictionary of Strings found in the passages linked to the confidence in each String, where each String satisfies a pattern corresponding to 'pattern_type'
     def satisfies_patterns(self, pattern_type):
 
         possibles = {}
-                  
+
         if 'DEF' in pattern_type:
             all_patterns = []
             def_patterns = '<SUBJECT> is a .+|.+ such as <SUBJECT>|<SUBJECT> are .+|<SUBJECT> , .+ ,|> .+ such as the <SUBJECT>| .+ such as a <SUBJECT>'
@@ -188,8 +235,8 @@ class AnswerFormulator:
                             possibles[token] += passage.score
 
         #elif '' in pattern_type:
-        
-             
+
+
         return possibles
 
     # recursive method for ordering answers 1-count given a number of possible answers
@@ -216,16 +263,17 @@ if __name__ == '__main__':
     if True:
         num = 100
         qp = QuestionProcessor()
-        test_qs = [('Where did Woodstock take place?', 18),
-                   ('Who is the founder of the Wal-Mart stores?', 41),
-                   ('Who created "The Muppets"?', 62),
-                   ('Name a civil war battlefield.', 75),
-                   ('When did the California lottery begin?', 104),
-                   ('What is thalassemia?', 15),
-                   ('What is a stratocaster', 39),
-                   ('What are the Poconos?', 55)]
-        # test_qs = [('When was the NFL established?', 99),
-        #            ('When did the California lottery begin?', 104)]
+        # test_qs = [('Where did Woodstock take place?', 18),
+        #            ('Who is the founder of the Wal-Mart stores?', 41),
+        #            ('Who created "The Muppets"?', 62),
+        #            ('Name a civil war battlefield.', 75),
+        #            ('When did the California lottery begin?', 104),
+        #            ('What is thalassemia?', 15),
+        #            ('What is a stratocaster', 39),
+        #            ('What are the Poconos?', 55)]
+        test_qs = [('What are the Poconos?', 55),
+                   ("What's the most famous tourist attraction in Rome?", 66),
+                   ("What province is Edmonton located in?", 102)]
         for test_q in test_qs:
             print(test_q)
             qp.set_question(test_q[0])

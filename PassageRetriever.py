@@ -1,6 +1,7 @@
 from collections import namedtuple
 import nltk
 import config
+import similarity as sim_lib
 
 ScoredPassage = namedtuple('ScoredPassage', 'passage, score, passage_str')
 TextPassagesScored = namedtuple('TextPassagesScored', 'rank, score, scored_passages')
@@ -79,7 +80,7 @@ class PassageRetriever:
                 if key in passage:
                     feature_vector[stemmer.stem(key)] = 1  # using binary feature vector
                     found_keyword = True
-            similarity = (self.cosine_similarity(list(feature_vector.values()),
+            similarity = (sim_lib.cosine_similarity(list(feature_vector.values()),
                                                  [1 for _ in range(0, len(feature_vector), 1)])
                           if found_keyword else 0)
             scored_passages.append(ScoredPassage(passage, similarity, passage_and_recomb[1]))
@@ -106,20 +107,12 @@ class PassageRetriever:
         # tok_sentences = [nltk.word_tokenize(sent) for sent in sentences]
         # return [(tok_sentences[i], sentences[i]) for i in range(0, len(sentences), 1)]
 
-    @staticmethod
-    def cosine_similarity(vector1, vector2):
-        assert len(vector1) == len(vector2)
-        dot_prod = sum([vector1[i]*vector2[i] for i in range(0, len(vector1), 1)])
-        mag1_squared = sum([vector1[i]**2 for i in range(0, len(vector1), 1)])
-        mag2_squared = sum([vector2[i]**2 for i in range(0, len(vector2), 1)])
-        return dot_prod / ((mag1_squared * mag2_squared)**(1/2))
-
 
 # run tests on PassageRetriever
 if __name__ == '__main__':
     if False:
         print('cosine sim test')
-        sim = PassageRetriever.cosine_similarity([1, 1, 1, 1], [1, 1, 0, 0])
+        sim = sim_lib.cosine_similarity([1, 1, 1, 1], [1, 1, 0, 0])
         print('Cosine sim = {}'.format(sim))
     if True:
         print('Question 0 test')
