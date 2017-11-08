@@ -23,6 +23,12 @@ The answer file that is created will be called `predictions.txt` and will be loc
 
 To evaluate the answers and calculate the MRR, run:
 ```
-$ python evaluation.py answer-pattern-file predictions.txt
+$ python evaluation.py answer-pattern-file prediction-file
 ```
-Replace `answer-pattern-file` with the path to the answer patterns file to the question set on your system.
+Replace `answer-pattern-file` with the path to the answer patterns file to the question set on your system and `prediction-file` with the path to the prediction file. As an example, to evaluate on the training data set with the default prediction file name run the command:
+```
+$ python evaluation.py qadata/train/answer_patterns.txt predictions.txt
+```
+
+## Pre-predicted Answers
+We have already run the QA system over both the training and the testing sets included in this repository. The prediction files for these can be found in `predictions-train.txt` and `predictions-test.txt` respectively.

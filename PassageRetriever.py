@@ -50,11 +50,14 @@ class PassageRetriever:
                     # print("Cannot find body text of document.")
                     # raise Exception("Cannot find body text of document.")
                 if text is not None:
-                    rank = (int)(doc[doc.index('Rank: ')+len('Rank: '): doc.index('Score: ')])
-                    score = (float)(doc[doc.index('Score: ')+len('Score: '): doc.index('\n')])
-                    scored_passages = self.score_passages_from_text(text)
-                    scored_passages = sorted(scored_passages, key=lambda passage: passage.score)
-                    text_passages_scored.append(TextPassagesScored(rank, score, scored_passages))
+                    try:
+                        rank = (int)(doc[doc.index('Rank: ')+len('Rank: '): doc.index('Score: ')])
+                        score = (float)(doc[doc.index('Score: ')+len('Score: '): doc.index('\n')])
+                        scored_passages = self.score_passages_from_text(text)
+                        scored_passages = sorted(scored_passages, key=lambda passage: passage.score)
+                        text_passages_scored.append(TextPassagesScored(rank, score, scored_passages))
+                    except Exception:
+                        0  # just do nothing
             return text_passages_scored
 
     # count is the number of passages to be retrieved. If None, all passages will be retrieved

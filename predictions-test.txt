@@ -1,0 +1,880 @@
+qid 120
+state
+New York
+Washington
+the state
+New England
+Montana
+Pennsylvania
+Idaho
+Wisconsin
+Oregon
+qid 121
+Mr.
+California
+Conte
+British
+Gonzalez
+Dino
+Artenstein
+Thomas
+Danny
+Jett
+qid 122
+Today
+1975
+today
+1981
+1985
+1958
+1971
+last year
+two weeks ago
+last week
+qid 123
+200 years ago
+1789
+1791
+last January
+last month
+1871
+1975
+1944
+last year
+next year
+qid 124
+Bronx
+South
+McLaughlin
+Mexico
+European
+British
+Northumberland
+Aberdeen
+Midland
+United
+qid 125
+video
+camcorder
+unit
+market
+sound
+tapes
+prices
+%
+camcorders
+product
+qid 126
+CFS
+ADD
+Fatigue
+CDC
+Retrovir
+Intron
+Martin
+Kroenke
+AZT
+Wellcome
+qid 127
+Yeager
+Chuck
+Air
+Force
+Bell
+Knight
+Highway
+Imperial
+Pete
+LeVier
+qid 128
+bull
+pit
+bites
+problem
+owners
+owner
+laws
+bulls
+law
+dogs
+qid 129
+porosity
+exporters
+scientists
+someone
+superlattices
+statement
+concept
+products
+patents
+chance
+qid 130
+American
+California
+City
+Soviet
+New
+York
+Mass
+Iran
+Cambridge
+Institute
+qid 131
+Morrison
+Miss
+Williams
+Garner
+Hank
+Margaret
+Jett
+Wood
+Pulitzer
+Fotine
+qid 132
+Dalton
+Davi
+Sanchez
+Leiter
+Timothy
+Lowell
+Miss
+Franz
+Panama
+Felix
+qid 133
+state
+people
+size
+legislatures
+percent
+nation
+delegation
+block
+city
+everything
+qid 134
+Jennifer
+Mexico
+New
+Blake
+Taos
+Southwestern
+Grizzly
+Spanish
+Peak
+Parachute
+qid 135
+1914
+1945
+70 years later
+1939
+today
+50 years ago
+1943
+1967
+0865
+this week
+qid 136
+director
+research
+hospital
+cancer
+area
+world
+anesthesia
+gene
+time
+substitute
+qid 137
+oxides
+emissions
+ozone
+oxide
+hydrocarbons
+reduction
+percent
+reductions
+sources
+compounds
+qid 138
+war
+day
+days
+victory
+peace
+force
+history
+objectives
+part
+years
+qid 139
+Mazda
+Wankel
+Miata
+NSU
+Toyota
+GTUs
+Mr.
+Spider
+SVX
+Zisch
+qid 140
+carta
+magna
+memorial
+symbol
+years
+freedom
+charter
+home
+source
+rights
+qid 141
+Christmas
+Ebenezer
+Past
+Santa
+Murray
+Stewart
+Marley
+Spirit
+Richard
+Doyle
+qid 142
+rice
+liquor
+brewers
+prices
+store
+yen
+makers
+products
+drinkers
+market
+qid 143
+1911
+This year
+1839
+1933
+this year
+last year
+1920
+1989
+Today
+2000
+qid 144
+last week
+1933
+1937
+1948
+1959
+1856
+1960
+1774
+1968
+2 years ago
+qid 145
+U.S.
+Ceclor
+Indianapolis
+Rank
+Score
+Law
+Medical
+BYLINE
+WASHINGTON
+Scalia
+qid 146
+America
+Eastern
+India
+Christian
+Takoma
+New
+California
+York
+Americans
+Buddha
+qid 147
+Harding
+Patti
+Cathy
+Costello
+New
+Hank
+Nashville
+McEntire
+Chapman
+Jane
+qid 148
+58
+10
+53
+50
+26
+55
+18
+17
+42
+40
+qid 149
+%
+aircraft
+products
+pounds
+year
+metal
+concerns
+industry
+sponge
+form
+qid 150
+County
+Bowl
+Robert
+Super
+Sockers
+George
+Quinn
+Walsh
+Supreme
+Court
+qid 151
+Kellogg
+Mills
+Mixx
+Bigg
+LaMothe
+Gold
+Honey
+William
+U.S.
+Mr.
+qid 152
+people
+shot
+year
+kind
+photograph
+one
+>
+stone
+event
+beer
+qid 153
+end
+analysts
+industry
+%
+profit
+companies
+strategy
+federation
+company
+observers
+qid 154
+version
+Newton
+the book
+book
+Las Vegas
+Cairo
+Galland
+Madrus
+Aladdin
+English
+qid 155
+Madrid
+Algeria
+Lejona
+Spain
+French
+Spanish
+Guipuzcoa
+Ireland
+Country
+Northern
+qid 156
+cents
+bar
+mail
+address
+post
+codes
+letter
+>
+nation
+office
+qid 157
+three years ago
+1620
+Today
+1978
+1944
+1994
+1987
+1992
+today
+1558
+qid 158
+this month
+this year
+1981
+1986
+1508
+1962
+1975
+1985
+three years ago
+yesterday
+qid 159
+DOC
+DOCNO
+Gallery
+LEISURE
+Closet
+Pam
+Lambert
+WALL
+STREET
+JOURNAL
+qid 160
+Rank
+Score
+<
+/DOCNO
+>
+/FILEID
+u
+w
+05-25
+/FIRST
+qid 161
+San
+Caltrans
+Children
+Park
+Kenya
+Playland
+Angeles
+Texas
+Menlo
+Los
+qid 162
+400
+800
+1984
+500
+50
+65
+74
+44
+475
+55
+qid 163
+U.S.
+Denver
+Columbus
+Ohio
+United
+Pittsburgh
+City
+Newton
+Portland
+Newark
+qid 164
+2
+12
+1986
+1983
+24
+1982
+400
+100
+300
+1987
+qid 165
+40
+15
+20
+10
+1
+1974
+27
+33
+62
+8
+qid 166
+Amsterdam
+California
+Los
+Franks
+Angeles
+West
+English
+York
+Orange
+New
+qid 167
+U.S.
+Iraqi
+Vietnam
+Indochina
+Laos
+Cambodia
+Baghdad
+Jabr
+Bush
+White
+qid 168
+2
+25
+90
+1
+4
+6
+30
+1976
+1978
+3
+qid 169
+call
+home
+group
+the call
+a place
+the trumpeter
+information
+a group
+>
+Palmisano
+qid 170
+sea
+world
+creatures
+whales
+dolphins
+company
+park
+killer
+times
+animals
+qid 171
+Magnolia
+Auburn
+Alabama
+State
+Hollingsworth
+Gary
+Hoffman
+Tommy
+Convention
+Orleans
+qid 172
+today
+1840
+last year
+1986
+this month
+last week
+Today
+this week
+1973
+1842
+qid 173
+Lord
+Mr.
+Californian
+Harrison
+Capt
+Lordite
+Ballard
+Quayle
+Mario
+British
+qid 174
+McFarland
+Thomas
+Bill
+Spanky
+English
+William
+George
+Mr.
+Tige
+Billy
+qid 175
+%
+taxes
+states
+year
+increase
+families
+sales
+system
+taxpayers
+rates
+qid 176
+season
+>
+world
+member
+<
+hockey
+game
+home
+record
+matches
+qid 177
+star
+a star
+Pryor
+movie
+>
+power
+a pair
+comedy
+the star
+Richard Pryor
+qid 178
+states
+income
+taxes
+areas
+officials
+farmers
+courts
+department
+division
+residents
+qid 179
+London
+North
+Terrace
+Palace
+German
+Buckingham
+Oxford
+Moscow
+Hall
+Jewish
+qid 180
+South
+Africa
+Witwatersrand
+Witwatersand
+Soweto
+Town
+Cape
+Johannesburg
+Namibian
+Saugus
+qid 181
+station
+radio
+the station
+the radio
+a radio
+market
+FM
+work
+Bay Area
+AM
+qid 182
+Northwest
+Airport
+Hobby
+Newark
+Eastern
+Detroit
+Boston
+Baker
+Metro
+Greg
+qid 183
+hazels
+winter
+soil
+species
+garden
+family
+petals
+years
+shrub
+study
+qid 184
+Sanchez
+Peters
+Frei
+Fernandez
+Foreign
+Antonio
+Ministry
+Fourth
+EFE
+Civic
+qid 185
+Boston
+France
+Providence
+English
+Montana
+Paris
+Mo
+Louisiana
+Bostonian
+West
+qid 186
+Year
+New
+Irish
+California
+Florida
+Sugar
+Southeastern
+Cotton
+No
+Fiesta
+qid 187
+books
+things
+rules
+adult
+emotions
+<
+fairy
+child
+Bears
+Expeditions
+qid 188
+NASA
+the shuttle
+stand
+the question
+space
+test
+the test
+The program
+Challenger
+shuttle
+qid 189
+state
+<
+dollars
+meeting
+people
+forces
+campaign
+glare
+storefronts
+handle
+qid 190
+talks
+progress
+week
+round
+forces
+prelude
+war
+exchange
+message
+prisoner
+qid 191
+industry
+record
+stage
+kind
+boards
+roll
+swing
+hardware
+musicians
+guide
+qid 192
+gene
+health
+move
+expert
+cigarette
+copy
+year
+school
+person
+surgery
+qid 193
+peak
+climbers
+feet
+food
+>
+weather
+way
+people
+windy
+stations
+qid 194
+McFarland
+Thomas
+Bill
+Spanky
+English
+George
+William
+Billy
+ABC
+Fort
+qid 195
+whim
+this stylish new restaurant
+< /P > < P > Capriccio
+nothing
+jewel
+>
+Floyd
+the betting
+< /P
+Caliente
+qid 196
+jazz
+music
+play
+>
+band
+album
+people
+hit
+time
+record
+qid 197
+buffalo
+the buffalo
+a buffalo
+The buffalo
+part
+cow
+meat
+beef
+the park
+the wing
+qid 198
+Lives
+drawings
+sampling
+Artists
+collection
+book
+painter
+artist
+century
+art
+qid 199
+%
+others
+carpet
+note
+company
+costs
+damn
+plants
+bank
+meeting
