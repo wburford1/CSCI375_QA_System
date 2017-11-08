@@ -169,14 +169,33 @@ class AnswerFormulator:
                         else:
                             possible_answer[e[0]] += passage[1].score
 
+        # for most 'WHAT' questions (all those other than def questions) we search through all the relevant passages and create a dictionary of nounphrases with confidence scores as values
         elif 'CHARACTERISTIC' in at:
-            grammar = "NP: {<DT>?<JJ>*<NN>}"
+            grammar = r"""
+              NP: {<DT|PP\$>?<JJ>*<NN>}   # chunk determiner/possessive, adjectives and noun
+                  {<NNP>+}                # chunk sequences of proper nouns
+            """
+            
             for passage in self.passage_objs:
+                noun_phrase = ''
                 pos_passage = pos_tag(passage.passage)
                 cp = nltk.RegexpParser(grammar)
                 result = cp.parse(pos_passage)
-                print (result)
-                
+                for e in tree2conlltags(result):
+                    if e[2] == 'B-NP':
+                        if not len(noun_phrase) == 0:
+                            if noun_phrase not in possible_answers:
+                                possible_answers[noun_phrase] = passage.score
+                            else:
+                                possible_answers[noun_phrase] += passage.score
+                        noun_phrase = e[0]
+                    elif e[2] == 'I-NP':
+                        noun_phrase += (' ' + e[0])
+                if not len(noun_phrase) == 0:
+                    if noun_phrase not in possible_answers:
+                        possible_answers[noun_phrase] = passage.score
+                    else:
+                        possible_answers[noun_phrase] += passage.score
 
         else:
             possible_answers = self.satisfies_patterns(at)
