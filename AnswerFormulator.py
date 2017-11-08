@@ -76,7 +76,7 @@ class AnswerFormulator:
             if len(qp.get_keywords()) < 3:
                 return ['DEF']
             else:
-                return[CHARACTERISTIC]
+                return['CHARACTERISTIC']
         elif qt == 'WHICH':
             return ['ELEMENTOF']
         elif qt == 'HOW':
@@ -157,6 +157,27 @@ class AnswerFormulator:
                         possible_answers[time_entity] += t_pass[1].score
         # END LOOKING FOR NAMED ENTITY ANSWER
 
+        #Handles questions like: 'how many __' or 'how much ___' or 'how few _____'
+        elif 'AMOUNT' in at:
+            tagged_passages = [([e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if e[2] == 'O' or e[2] == 'MONEY'], element) for element in self.passage_objs[:end_ne_tagging_index]]
+            ne_passages = [e for e in tagged_passages if not len(e[0]) == 0]
+            for passage in ne_passages:
+                for e in passage[0]:
+                    if e[1] == 'NUM':
+                        if e[0] not in possible_answers:
+                            possible_answers[e[0]] = passage[1].score
+                        else:
+                            possible_answer[e[0]] += passage[1].score
+
+        elif 'CHARACTERISTIC' in at:
+            grammar = "NP: {<DT>?<JJ>*<NN>}"
+            for passage in self.passage_objs:
+                pos_passage = pos_tag(passage.passage)
+                cp = nltk.RegexpParser(grammar)
+                result = cp.parse(pos_passage)
+                print (result)
+                
+
         else:
             possible_answers = self.satisfies_patterns(at)
             
@@ -216,7 +237,8 @@ if __name__ == '__main__':
     if True:
         num = 100
         qp = QuestionProcessor()
-        test_qs = [('Where did Woodstock take place?', 18),
+        test_qs = [('What hockey team did Wayne Gretzky play for?', 0),
+                   ('Where did Woodstock take place?', 18),
                    ('Who is the founder of the Wal-Mart stores?', 41),
                    ('Who created "The Muppets"?', 62),
                    ('Name a civil war battlefield.', 75),
