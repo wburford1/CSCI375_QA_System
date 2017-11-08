@@ -98,6 +98,9 @@ class AnswerFormulator:
 
         # START WHEN LOOKING FOR NAMED ENTITY ANSWER
         # if we are looking for a specific named entity, make sure we have that named entity in one of the passages
+        if at is None:
+            print('No answer type for question: {}'.format(self.question))
+            return []
         at_is_ne = False
         for a_type in at:
             if a_type in ['ORGANIZATION', 'PERSON', 'LOCATION', 'MONEY', 'PERCENT', 'FACILITY', 'GPE']:
@@ -227,7 +230,7 @@ if __name__ == '__main__':
             print(test_q)
             qp.set_question(test_q[0])
             pr = PassageRetriever()
-            pr.set_question(test_q[1], qp.get_keywords(), 'train', 20)
+            pr.set_question(test_q[1], qp.get_keywords(), 10)
             all_passages = pr.retrieve_top_scored_passages()
             # print(all_passages)
             af = AnswerFormulator()
