@@ -160,6 +160,7 @@ class AnswerFormulator:
         # END LOOKING FOR NAMED ENTITY ANSWER
 
         elif 'DEF' in at:
+            start_time = time.time()
             end_passages = 2000
             to_be = ['is', 'are', 'were', 'was']
             mod_tok_q = None
@@ -203,26 +204,44 @@ class AnswerFormulator:
                             possible_answers[answer] = 1
 
                 mod_tok_q = mod_tok_q[:len(mod_tok_q)-1]
-        #Handles questions like: 'how many __' or 'how much ___' or 'how few _____'
+            print("DEF took {}s".format(time.time()-start_time))
+        # Handles questions like: 'how many __' or 'how much ___' or 'how few _____'
         elif 'AMOUNT' in at:
-            tagged_passages = [([e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if e[2] == 'O' or e[2] == 'MONEY'], element) for element in self.passage_objs[:end_ne_tagging_index]]
-            ne_passages = [e for e in tagged_passages if not len(e[0]) == 0]
-            for passage in ne_passages:
-                for e in passage[0]:
-                    if e[1] == 'NUM':
-                        if e[0] not in possible_answers:
-                            possible_answers[e[0]] = passage[1].score
+            start_time = time.time()
+            end_passages = 2000
+            # tagged_passages = [([e for e in tree2conlltags(ne_chunk(pos_tag(element.passage))) if e[2] == 'O' or e[2] == 'MONEY'], element) for element in self.passage_objs[:end_passages]]
+            # ne_passages = [e for e in tagged_passages if not len(e[0]) == 0]
+            # for passage in ne_passages:
+            #     for e in passage[0]:
+            #         if e[1] == 'NUM':
+            #             if e[0] not in possible_answers:
+            #                 possible_answers[e[0]] = passage[1].score
+            #             else:
+            #                 possible_answer[e[0]] += passage[1].score
+            for passage_obj in self.passage_objs[:end_passages]:
+                for token in passage_obj.passage:
+                    try:
+                        value = int(token)
+                    except ValueError:
+                        value = None
+                    if value is not None:
+                        val = str(value)
+                        if val not in possible_answers:
+                            possible_answers[val] = passage_obj.score
                         else:
-                            possible_answer[e[0]] += passage[1].score
+                            possible_answers[val] += passage_obj.score
+            print("AMOUNT took {}s".format(time.time()-start_time))
 
         # for most 'WHAT' questions (all those other than def questions) we search through all the relevant passages and create a dictionary of nounphrases with confidence scores as values
         elif 'CHARACTERISTIC' in at:
+            start_time = time.time()
+            end_passages = 2000
             grammar = r"""
               NP: {<DT|PP\$>?<JJ>*<NN>}   # chunk determiner/possessive, adjectives and noun
                   {<NNP>+}                # chunk sequences of proper nouns
             """
 
-            for passage in self.passage_objs:
+            for passage in self.passage_objs[:end_passages]:
                 noun_phrase = ''
                 pos_passage = pos_tag(passage.passage)
                 cp = nltk.RegexpParser(grammar)
@@ -242,7 +261,7 @@ class AnswerFormulator:
                         possible_answers[noun_phrase] = passage.score
                     else:
                         possible_answers[noun_phrase] += passage.score
-
+            print("CHARACTERISTIC took {}s".format(time.time()-start_time))
         else:
             possible_answers = self.satisfies_patterns(at)
 
@@ -310,7 +329,8 @@ if __name__ == '__main__':
         #            ('What is thalassemia?', 15),
         #            ('What is a stratocaster', 39),
         #            ('What are the Poconos?', 55)]
-        test_qs = [('What are the Poconos?', 55),
+        test_qs = [('How many home runs did Lou Gehrig have during his career?', 17),
+                   ('What are the Poconos?', 55),
                    ("What's the most famous tourist attraction in Rome?", 66),
                    ("What province is Edmonton located in?", 102),
                    ('What hockey team did Wayne Gretzky play for?', 0),
