@@ -4,12 +4,14 @@ import nltk
 from nltk import ne_chunk, pos_tag, word_tokenize, Text
 from nltk.chunk import tree2conlltags
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 from QuestionProcessor import QuestionProcessor
 from PassageRetriever import PassageRetriever
 import re
 import collections
 import time
 import timex
+import string
 
 # A class for formatting answers given a question
 class AnswerFormulator:
@@ -25,6 +27,7 @@ class AnswerFormulator:
         # a list of ScoredPassage objects as defined in PassageRetriever
         self.passage_objs = None
         self.tokenized_passages = None
+        self.qp = QuestionProcessor()
 
     # question is a string, passages is a list of passage objects defined in PassageRetriever
     def set_question(self, question, passages):
@@ -33,6 +36,7 @@ class AnswerFormulator:
         self.tokenized_q = word_tokenize(question)
         self.ne_tagged_q = tree2conlltags(ne_chunk(pos_tag(self.tokenized_q)))
         self.passage_objs = passages
+        self.qp.set_question(self.question)
 
     # clears the AnswerFormatter object so that it can be used with another question
     def clear(self):
@@ -69,13 +73,16 @@ class AnswerFormulator:
         elif qt == 'NAME':
             return ['ORGANIZATION', 'PERSON', 'LOCATION', 'DATE', 'TIME', 'MONEY', 'PERCENT', 'FACILITY', 'GPE']
         elif qt == 'WHAT':
-            return ['NOUNPHRASE']
+            if len(qp.get_keywords()) < 3:
+                return ['DEF']
+            else:
+                return[CHARACTERISTIC]
         elif qt == 'WHICH':
             return ['ELEMENTOF']
-        elif qt == 'WHY':
-            return ['JUSTIFICATION']
         elif qt == 'HOW':
-            return ['DESCRIPTION']
+            if self.qp.get_keywords()[qp.get_keywords().index(qt.lower()) + 1] in ['much', 'many', 'few']:
+                return ['AMOUNT']
+            
 
     # returns an array of ten answers where [0] is the 'best' answer and [9] is the tenth best
     # question and passages must not be equal to None
@@ -126,7 +133,7 @@ class AnswerFormulator:
                 # goes through every named entity in the passages and if a given named entity's type is in at then it adds that answer to possible answers or increments that answer's score by 1 if it already exists in possible aswers
                 for passage in ne_passages:
                     for e in passage[0]:
-                        # why is it if the word is not in the question?
+                        #second part of this if statement because otherwise this will often return the subject of the question as the answer... ie who owns cnn will return cnn
                         if e[2][e[2].index('-') + 1:] in at and e[0] not in self.tokenized_q:
                             if e[0] not in possible_answers:
                                 possible_answers[e[0]] = passage[1].score
@@ -135,7 +142,7 @@ class AnswerFormulator:
         # if we are looking for a time/date, use timex
         # it only recognizes years and relative time statements though (need a Python 2 module to do better things)
         # this seems to be ok for now though b/c I only see WHEN Qs with year answers
-        if 'TIME' in at or 'DATE' in at:
+        elif 'TIME' in at or 'DATE' in at:
             last_time_tagged_index = 5000
             time_tagged = [(timex.tag(pass_obj.passage_str), pass_obj) for pass_obj in self.passage_objs[:last_time_tagged_index]]
             for t_pass in time_tagged:
@@ -147,22 +154,40 @@ class AnswerFormulator:
                         possible_answers[time_entity] += t_pass[1].score
         # END LOOKING FOR NAMED ENTITY ANSWER
 
-        # elif self.get_answertype() == 'DEF':
-        #     possible_answers = self.satisfies_patterns('DEF')
-
+        else:
+            possible_answers = self.satisfies_patterns(at)
+            
         return self.ordered_answers([], possible_answers, count)
 
-    # A method for finding finding patterns in the passages
-    # returns a dictionary of Strings found in the passages linked to the confidence in each String, where each String satisfies a pattern corresponding to 'pattern_type'
-    # def satisfies_patterns(self, pattern_type):
-    #
-    #     # passages_as_string =
-    #
-    #     if pattern_type == 'DEF':
-    #         def_patterns = ['<SUBJECT> is a .+\.', '[,.].+ such as <SUBJECT>', '<SUBJECT> are .+.', '<SUBJECT>, .+,']
-    #         for pattern in self.pattern_objs
+     #A method for finding finding patterns in the passages
+     #returns a dictionary of Strings found in the passages linked to the confidence in each String, where each String satisfies a pattern corresponding to 'pattern_type'
+    def satisfies_patterns(self, pattern_type):
 
+        possibles = {}
+                  
+        if 'DEF' in pattern_type:
+            all_patterns = []
+            def_patterns = '<SUBJECT> is a .+|.+ such as <SUBJECT>|<SUBJECT> are .+|<SUBJECT> , .+ ,|> .+ such as the <SUBJECT>| .+ such as a <SUBJECT>'
+            for word in self.qp.get_keywords():
+                if word.upper() == self.get_questiontype():
+                    subject = self.qp.get_keywords()[self.qp.get_keywords().index(word) + 1]
+                    break
+            subject = subject.lower()
+            def_patterns = def_patterns.replace('<SUBJECT>', subject)
 
+            #goes through all passages and finds any substrings of each passage that match the above defined patterns, then adds the the non-stopword, non-punctuation tokens of each pattern to the dictionary with the value of the passage score
+            for passage in self.passage_objs:
+                for match in re.findall(def_patterns, passage.passage_str, re.IGNORECASE):
+                    for token in [word.lower() for word in nltk.word_tokenize(match) if word not in set(stopwords.words('english')) and word not in list(string.punctuation) and not word.lower() == subject]:
+                        if token not in possibles:
+                            possibles[token] = passage.score
+                        else:
+                            possibles[token] += passage.score
+
+        #elif '' in pattern_type:
+        
+             
+        return possibles
 
     # recursive method for ordering answers 1-count given a number of possible answers
     # 'possibilities' is a dictionary of answer:confidence where confidence is a quantified measure of increasing confidence in the answer
@@ -192,7 +217,10 @@ if __name__ == '__main__':
                    ('Who is the founder of the Wal-Mart stores?', 41),
                    ('Who created "The Muppets"?', 62),
                    ('Name a civil war battlefield.', 75),
-                   ('When did the California lottery begin?', 104)]
+                   ('When did the California lottery begin?', 104),
+                   ('What is thalassemia?', 15),
+                   ('What is a stratocaster', 39),
+                   ('What are the Poconos?', 55)]
         # test_qs = [('When was the NFL established?', 99),
         #            ('When did the California lottery begin?', 104)]
         for test_q in test_qs:

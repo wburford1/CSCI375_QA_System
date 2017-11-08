@@ -32,13 +32,13 @@ class QuestionProcessor:
                     tok = ' '.join([tok, toks[i]])
                     i += 1
                 i += 1
-                self.key_words.append(tok)
+                self.key_words.append(tok.lower())
             # if a token is not a stopword, it is added to the list of key words
             else:
                 if toks[i] not in set(stopwords.words('english')):
-                    self.key_words.append(toks[i])
+                    self.key_words.append(toks[i].lower())
                 else:
-                    self.stop_words.append(toks[i])
+                    self.stop_words.append(toks[i].lower())
                 i += 1
 
         # removes punctuation
